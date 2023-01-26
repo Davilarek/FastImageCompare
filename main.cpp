@@ -67,10 +67,6 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
             }
         }
     }
-    // std::cout << "Result:\n";
-    // std::cout << "Different pixels: " << diffPixels << " \n";
-    // std::cout << (float)diffPixels / ((float)(imagesDim[1].first * imagesDim[1].second))  << std::endl;
-    // std::cout << "That's " << (float)diffPixels / ((float)(imagesDim[1].first * imagesDim[1].second)) * 100 << "\% different image.\n";
 
     std::vector<std::string> out;
     out.push_back(std::to_string(diffPixels));
