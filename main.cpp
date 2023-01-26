@@ -13,7 +13,7 @@ int main()
     if (!std::filesystem::exists(filename2))
         return 1;
 
-    auto out = compareImages(filename1, filename2);
+    auto out = compareImages(filename1, filename2, true);
     std::cout << "Result:\n";
     std::cout << "Different pixels: " << out[0] << " \n";
     std::cout << "That's " << out[1] << "\% different image.\n";

@@ -7,7 +7,7 @@
 /// @param filename1 Source filename
 /// @param filename2 Compare filename
 /// @return Vector with results. First element: different pixel count, Second element: difference percent
-std::vector<std::string> compareImages(std::string filename1, std::string filename2)
+std::vector<std::string> compareImages(std::string filename1, std::string filename2, bool enableLog)
 {
     std::vector<std::vector<unsigned char>> imagesData;
     std::vector<std::pair<int, int>> imagesDim;
@@ -19,7 +19,8 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         unsigned char *data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
         if (data == nullptr)
         {
-            std::cout << "Failed to load image: " << path << std::endl;
+            if (enableLog)
+                std::cout << "Failed to load image: " << path << std::endl;
             continue;
         }
         imagesData.push_back(std::vector<unsigned char>(data, data + width * height * nrChannels));
@@ -28,8 +29,8 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
     }
 
     int selectedImageIndex = 0;
-
-    std::cout << "You have selected image: " << imagesPaths[selectedImageIndex] << std::endl;
+    if (enableLog)
+        std::cout << "You have selected image: " << imagesPaths[selectedImageIndex] << std::endl;
 
     std::vector<unsigned char> sourceImageData = imagesData[selectedImageIndex];
     std::pair<int, int> sourceImageDim = imagesDim[selectedImageIndex];
@@ -40,8 +41,8 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         {
             continue;
         }
-
-        std::cout << "Comparing image: " << imagesPaths[i] << " with source image: " << imagesPaths[selectedImageIndex] << std::endl;
+        if (enableLog)
+            std::cout << "Comparing image: " << imagesPaths[i] << " with source image: " << imagesPaths[selectedImageIndex] << std::endl;
 
         int width = imagesDim[i].first;
         int height = imagesDim[i].second;
