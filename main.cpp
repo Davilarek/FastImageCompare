@@ -23,60 +23,6 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         stbi_image_free(data);
     }
 
-    // // for (int i = 0; i < imagesData.size(); ++i)
-    // // {
-    // //     std::cout << "image: " << imagesPaths[i] << " with dimension: " << imagesDim[i].first << "x" << imagesDim[i].second << std::endl;
-    // //     // You can access the pixels of i-th image by imagesData[i]
-    // //     std::cout << "" << imagesData[i][0] << " " << imagesData[i][1] << " " << imagesData[i][2] << std::endl;
-    // // }
-    // // for (int i = 0; i < imagesData.size(); ++i)
-    // // {
-    // //     std::cout << "image: " << imagesPaths[i] << " with dimension: " << imagesDim[i].first << "x" << imagesDim[i].second << std::endl;
-    // //     int width = imagesDim[i].first;
-    // //     int height = imagesDim[i].second;
-    // //     int nrChannels = 3;
-    // //     std::cout << "Printing pixels of image: " << imagesPaths[i] << std::endl;
-    // //     for (int y = 0; y < height; ++y)
-    // //     {
-    // //         for (int x = 0; x < width; ++x)
-    // //         {
-    // //             int index = (y * width + x) * nrChannels;
-    // //             unsigned char red = imagesData[i][index];
-    // //             unsigned char green = imagesData[i][index + 1];
-    // //             unsigned char blue = imagesData[i][index + 2];
-    // //             std::cout << "Pixel (" << x << ", " << y << ") has RGB values: " << (int)red << ", " << (int)green << ", " << (int)blue << std::endl;
-    // //         }
-    // //     }
-    // // }
-    // for (int i = 0; i < imagesData.size(); ++i)
-    // {
-    //     std::cout << "image: " << imagesPaths[i] << " with dimension: " << imagesDim[i].first << "x" << imagesDim[i].second << std::endl;
-    //     int width = imagesDim[i].first;
-    //     int height = imagesDim[i].second;
-    //     int nrChannels = 4;
-    //     std::cout << "Printing pixels of image: " << imagesPaths[i] << std::endl;
-    //     for (int y = 0; y < height; ++y)
-    //     {
-    //         for (int x = 0; x < width; ++x)
-    //         {
-    //             int index = (y * width + x) * nrChannels;
-    //             unsigned char red = imagesData[i][index];
-    //             unsigned char green = imagesData[i][index + 1];
-    //             unsigned char blue = imagesData[i][index + 2];
-    //             unsigned char alpha = imagesData[i][index + 3];
-    //             if (nrChannels == 4)
-    //             {
-    //                 std::cout << "Pixel (" << x << ", " << y << ") has RGBA values: " << (int)red << ", " << (int)green << ", " << (int)blue << ", " << (int)alpha << std::endl;
-    //             }
-    //             else
-    //             {
-    //                 alpha = 255; // Set alpha value to 255 if the image has no alpha channel
-    //                 std::cout << "Pixel (" << x << ", " << y << ") has RGB values: " << (int)red << ", " << (int)green << ", " << (int)blue << std::endl;
-    //             }
-    //         }
-    //     }
-    // }
-
     int selectedImageIndex = 0;
 
     std::cout << "You have selected image: " << imagesPaths[selectedImageIndex] << std::endl;
