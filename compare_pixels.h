@@ -45,8 +45,8 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         if (enableLog)
             std::cout << "Comparing image: " << imagesPaths[i] << " with source image: " << imagesPaths[selectedImageIndex] << std::endl;
 
-        int width = imagesDim[i].first;
-        int height = imagesDim[i].second;
+        int width = std::min(sourceImageDim.first, imagesDim[i].first);
+        int height = std::min(sourceImageDim.second, imagesDim[i].second);
         int nrChannels = 4;
 
         for (int y = 0; y < height; ++y)
