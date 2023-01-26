@@ -7,6 +7,15 @@
 /// @param filename1 Source filename
 /// @param filename2 Compare filename
 /// @return Vector with results. First element: different pixel count, Second element: difference percent
+std::vector<std::string> compareImages(std::string filename1, std::string filename2)
+{
+    return compareImages(filename1, filename2, false);
+}
+
+/// @brief Compares image pixel by pixel. Outputs results.
+/// @param filename1 Source filename
+/// @param filename2 Compare filename
+/// @return Vector with results. First element: different pixel count, Second element: difference percent
 std::vector<std::string> compareImages(std::string filename1, std::string filename2, bool enableLog)
 {
     std::vector<std::vector<unsigned char>> imagesData;
