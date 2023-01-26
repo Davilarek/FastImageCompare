@@ -5,7 +5,9 @@ int main()
 {
     std::string filename1;
     std::string filename2;
+    std::cout << "Source filename: ";
     std::cin >> filename1;
+    std::cout << "Compare filename: ";
     std::cin >> filename2;
 
     if (!std::filesystem::exists(filename1))
