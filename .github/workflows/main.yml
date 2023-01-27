@@ -17,7 +17,7 @@ jobs:
         path: main.exe
   build-linux:
     runs-on: ubuntu-latest
-    setps:
+    steps:
     - name: Install G++
       run: sudo apt install build-essential
     - name: Build for Linux
