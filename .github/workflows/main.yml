@@ -32,7 +32,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Make executable
-      run: chmod +x ./build.sh
+      run: chmod +x ./build_arm64.sh
     - name: Install G++ aarch64
       run: sudo apt install g++-aarch64-linux-gnu
     - name: Build for Linux
