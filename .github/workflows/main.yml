@@ -13,9 +13,9 @@ jobs:
       run: ./build.bat
     - uses: actions/upload-artifact@v2
       with:
-        name: FastImageCompare
+        name: FastImageCompareWin64
         path: main.exe
-  build-linux:
+  build-linux64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -25,5 +25,21 @@ jobs:
       run: ./build.sh
     - uses: actions/upload-artifact@v2
       with:
-        name: FastImageCompare
+        name: FastImageCompareLinux64
+        path: main
+  build-linuxarm64:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make executable
+      run: chmod +x ./build.sh
+    - name: Run on architecture
+      uses: uraimo/run-on-arch-action@v2.5.0
+      with:
+          arch: aarch64
+          distro: ubuntu_latest
+          run: ./build.sh
+    - uses: actions/upload-artifact@v2
+      with:
+        name: FastImageCompareArm64
         path: main
