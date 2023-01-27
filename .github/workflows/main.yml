@@ -1,0 +1,19 @@
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-10
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+    - name: Build for Windows
+      run: ./build.bat
+    - uses: actions/upload-artifact@v2
+      with:
+        name: FastImageCompare
+        path: main.exe
