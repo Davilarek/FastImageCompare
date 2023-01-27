@@ -38,7 +38,7 @@ jobs:
       with:
           arch: aarch64
           distro: ubuntu_latest
-          run: sudo apt install build-essential && ./build.sh
+          run: apt install build-essential && ./build.sh
     - uses: actions/upload-artifact@v2
       with:
         name: FastImageCompareArm64
