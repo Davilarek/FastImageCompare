@@ -20,10 +20,8 @@ int main(int argc, char *argv[])
     }
     else
     {
-        // filename1 = args[0] + "";
-        // filename2 = args[1] + "";
-        filename1 = argv[1];
-        filename2 = argv[2];
+        filename1 = args[0];
+        filename2 = args[1];
     }
 
     if (!std::filesystem::exists(filename1))
