@@ -47,7 +47,13 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
 
         int width = std::min(sourceImageDim.first, imagesDim[i].first);
         int height = std::min(sourceImageDim.second, imagesDim[i].second);
-        int nrChannels = 4;
+        // int nrChannels = 4;
+        int nrChannels = 3;
+
+        // for (auto i : imagesData[i])
+        //     std::cout << std::to_string(i) << ' ';
+        // for (auto i : sourceImageData)
+        //     std::cout << std::to_string(i) << ' ';
 
         for (int y = 0; y < height; ++y)
         {
@@ -58,16 +64,19 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
                 unsigned char red1 = sourceImageData[index];
                 unsigned char green1 = sourceImageData[index + 1];
                 unsigned char blue1 = sourceImageData[index + 2];
-                unsigned char alpha1 = sourceImageData[index + 3];
+                // unsigned char alpha1 = sourceImageData[index + 3];
 
                 unsigned char red2 = imagesData[i][index];
                 unsigned char green2 = imagesData[i][index + 1];
                 unsigned char blue2 = imagesData[i][index + 2];
-                unsigned char alpha2 = imagesData[i][index + 3];
+                // unsigned char alpha2 = imagesData[i][index + 3];
 
-                if (red1 != red2 || green1 != green2 || blue1 != blue2 || alpha1 != alpha2)
+                // if (red1 != red2 || green1 != green2 || blue1 != blue2 || alpha1 != alpha2)
+                if (red1 != red2 || green1 != green2 || blue1 != blue2)
                 {
                     // std::cout << "Pixel (" << x << ", " << y << ") is different in image: " << imagesPaths[i] << std::endl;
+                    // std::cout << "Pixel (" << x << ", " << y << ") has RGBA values: " << (int)red1 << ", " << (int)green1 << ", " << (int)blue1 << ", " << (int)alpha1 << std::endl;
+                    // std::cout << "Pixel (" << x << ", " << y << ") has RGBA values: " << (int)red2 << ", " << (int)green2 << ", " << (int)blue2 << ", " << (int)alpha2 << std::endl;
                     diffPixels += 1;
                 }
             }
