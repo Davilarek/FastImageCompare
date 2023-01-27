@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Make executable
-      run: chmod +x ./build.sh
+      run: ls && chmod +x ./build.sh
     - name: Build for Linux
       run: ./build.sh
     - uses: actions/upload-artifact@v2
