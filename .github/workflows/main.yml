@@ -18,10 +18,10 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-    - name: Install G++
-      run: sudo apt install build-essential
+    - name: Make executable
+      run: chmod +x ./build.sh
     - name: Build for Linux
-      run: sh build.sh
+      run: ./build.sh
     - uses: actions/upload-artifact@v2
       with:
         name: FastImageCompare
