@@ -18,8 +18,10 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
+    - name: Test
+      run: ls
     - name: Make executable
-      run: ls && chmod +x ./build.sh
+      run: chmod +x ./build.sh
     - name: Build for Linux
       run: ./build.sh
     - uses: actions/upload-artifact@v2
