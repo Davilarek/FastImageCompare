@@ -1,1 +1,1 @@
-g++.exe -std=c++17 -static -fdiagnostics-color=always -g ./main.cpp -o ./main
+g++ -std=c++17 -static -fdiagnostics-color=always -g ./main.cpp -o ./main
