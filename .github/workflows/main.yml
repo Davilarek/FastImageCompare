@@ -3,10 +3,8 @@ name: Build CI
 on: [push, pull_request]
 
 jobs:
-  build:
-
+  build-windows:
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Setup MSYS2
@@ -17,3 +15,14 @@ jobs:
       with:
         name: FastImageCompare
         path: main.exe
+  build-linux:
+    runs-on: ubuntu-latest
+    setps:
+    - name: Install G++
+      run: sudo apt install build-essential
+    - name: Build for Linux
+      run: sh build.sh
+    - uses: actions/upload-artifact@v2
+      with:
+        name: FastImageCompare
+        path: main
