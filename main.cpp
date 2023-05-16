@@ -1,5 +1,15 @@
 #include <filesystem>
+#include <string>
 #include "compare_pixels.h"
+
+void readLine(char *outputHere)
+{
+    char tmp[101];
+    fgets(tmp, sizeof(tmp), stdin);
+    tmp[strcspn(tmp, "\n")] = '\0';
+    strncpy(outputHere, tmp, 100);
+    outputHere[100] = '\0';
+}
 
 int main(int argc, char *argv[])
 {
@@ -13,10 +23,22 @@ int main(int argc, char *argv[])
     std::string filename2;
     if (args.size() == 0)
     {
-        std::cout << "Source filename: ";
-        std::cin >> filename1;
-        std::cout << "Compare filename: ";
-        std::cin >> filename2;
+        char filename1a[101];
+        char filename2a[101];
+        printf("Source filename: ");
+        readLine(filename1a);
+        // scanf("%s",filename1);
+        // char tmp1[101];
+        // scanf("%100s", tmp1);
+        // filename1 = tmp1;
+        printf("Compare filename: ");
+        readLine(filename2a);
+        filename1 = filename1a;
+        filename2 = filename2a;
+        // std::cin >> filename2;
+        // char tmp2[101];
+        // scanf("%100s", tmp2);
+        // filename2 = tmp2;
     }
     else
     {
@@ -41,9 +63,9 @@ int main(int argc, char *argv[])
             }
 
             auto out = compareImages(filename1, entryNormal.string(), true);
-            std::cout << "Result:\n";
-            std::cout << "Different pixels: " << out[0] << " \n";
-            std::cout << "That's " << out[1] << "\% different image.\n";
+            printf("Result:\n");
+            printf("Different pixels: %s \n", out[0].c_str());
+            printf("That's %s%% different image.\n", out[1].c_str());
         }
         return 0;
     }
@@ -52,8 +74,8 @@ int main(int argc, char *argv[])
     auto filename2Normal = std::filesystem::canonical(filename2);
 
     auto out = compareImages(filename1Normal.string(), filename2Normal.string(), true);
-    std::cout << "Result:\n";
-    std::cout << "Different pixels: " << out[0] << " \n";
-    std::cout << "That's " << out[1] << "\% different image.\n";
+    printf("Result:\n");
+    printf("Different pixels: %s \n", out[0].c_str());
+    printf("That's %s%% different image.\n", out[1].c_str());
     return 0;
 }

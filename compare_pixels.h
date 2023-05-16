@@ -1,6 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include <iostream>
+#include <stdio.h>
+// #include <iostream>
 #include <vector>
 
 /// @brief Compares image pixel by pixel. Outputs results.
@@ -21,7 +22,7 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         if (data == nullptr)
         {
             if (enableLog)
-                std::cout << "Failed to load image: " << path << std::endl;
+                printf("Failed to load image: %s\n", path.c_str());
             continue;
         }
         imagesData.push_back(std::vector<unsigned char>(data, data + width * height * nrChannels));
@@ -31,7 +32,7 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
 
     int selectedImageIndex = 0;
     if (enableLog)
-        std::cout << "You have selected image: " << imagesPaths[selectedImageIndex] << std::endl;
+        printf("You have selected image: %s\n", imagesPaths[selectedImageIndex].c_str());
 
     std::vector<unsigned char> sourceImageData = imagesData[selectedImageIndex];
     std::pair<int, int> sourceImageDim = imagesDim[selectedImageIndex];
@@ -43,7 +44,7 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
             continue;
         }
         if (enableLog)
-            std::cout << "Comparing image: " << imagesPaths[i] << " with source image: " << imagesPaths[selectedImageIndex] << std::endl;
+            printf("Comparing image: %s with source image: %s\n", imagesPaths[i].c_str(), imagesPaths[selectedImageIndex].c_str());
 
         int width = std::min(sourceImageDim.first, imagesDim[i].first);
         int height = std::min(sourceImageDim.second, imagesDim[i].second);
