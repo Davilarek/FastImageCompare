@@ -4,6 +4,11 @@
 // #include <iostream>
 #include <vector>
 
+double reversePercentage(double percentage)
+{
+    return 100.0 - percentage;
+}
+
 /// @brief Compares image pixel by pixel. Outputs results.
 /// @param filename1 Source filename
 /// @param filename2 Compare filename
@@ -85,7 +90,8 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
     }
 
     std::vector<std::string> out;
+    float percent = (float)diffPixels / ((float)(imagesDim[1].first * imagesDim[1].second)) * 100;
     out.push_back(std::to_string(diffPixels));
-    out.push_back(std::to_string((float)diffPixels / ((float)(imagesDim[1].first * imagesDim[1].second)) * 100));
+    out.push_back(std::to_string(reversePercentage(percent)));
     return out;
 }
