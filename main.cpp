@@ -64,8 +64,8 @@ int main(int argc, char *argv[])
 
             auto out = compareImages(filename1, entryNormal.string(), true);
             printf("Result:\n");
-            printf("Different pixels: %s \n", out[0].c_str());
-            printf("That's %s%% different image.\n", out[1].c_str());
+            printf("Different pixels: %d \n", out.pixels);
+            printf("That's %f%% different image.\n", out.percent);
         }
         return 0;
     }
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 
     auto out = compareImages(filename1Normal.string(), filename2Normal.string(), true);
     printf("Result:\n");
-    printf("Different pixels: %s \n", out[0].c_str());
-    printf("That's %s%% different image.\n", out[1].c_str());
+    printf("Different pixels: %d \n", out.pixels);
+    printf("That's %f%% different image.\n", out.percent);
     return 0;
 }

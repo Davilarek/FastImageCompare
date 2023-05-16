@@ -9,12 +9,18 @@ double reversePercentage(double percentage)
     return 100.0 - percentage;
 }
 
+struct CompareResult
+{
+    float percent;
+    float pixels;
+};
+
 /// @brief Compares image pixel by pixel. Outputs results.
 /// @param filename1 Source filename
 /// @param filename2 Compare filename
 /// @param enableLog Enable info log
 /// @return Vector with results. First element: different pixel count, Second element: difference percent
-std::vector<std::string> compareImages(std::string filename1, std::string filename2, bool enableLog)
+CompareResult compareImages(std::string filename1, std::string filename2, bool enableLog)
 {
     std::vector<std::vector<unsigned char>> imagesData;
     std::vector<std::pair<int, int>> imagesDim;
@@ -89,9 +95,12 @@ std::vector<std::string> compareImages(std::string filename1, std::string filena
         }
     }
 
-    std::vector<std::string> out;
+    // std::vector<std::string> out;
     float percent = (float)diffPixels / ((float)(imagesDim[1].first * imagesDim[1].second)) * 100;
-    out.push_back(std::to_string(diffPixels));
-    out.push_back(std::to_string(reversePercentage(percent)));
+    // out.push_back(std::to_string(diffPixels));
+    // out.push_back(std::to_string(reversePercentage(percent)));
+    CompareResult out = CompareResult();
+    out.pixels = diffPixels;
+    out.percent = reversePercentage(percent);
     return out;
 }
