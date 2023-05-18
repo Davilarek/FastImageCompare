@@ -46,6 +46,13 @@ int main(int argc, char *argv[])
         filename2 = args[1];
     }
 
+    bool jsonMode = false;
+
+    if (args.size() == 3 && args[2] == "json")
+    {
+        jsonMode = true;
+    }
+
     if (!std::filesystem::exists(filename1))
         return 1;
     if (!std::filesystem::exists(filename2))
@@ -63,9 +70,16 @@ int main(int argc, char *argv[])
             }
 
             auto out = compareImages(filename1, entryNormal.string(), true);
-            printf("Result:\n");
-            printf("Different pixels: %d \n", out.pixels);
-            printf("That's %f%% different image.\n", out.percent);
+            if (!jsonMode)
+            {
+                printf("Result:\n");
+                printf("Different pixels: %d \n", out.pixels);
+                printf("That's %f%% different image.\n", out.percent);
+            }
+            else
+            {
+                printf("{\"pixels\":\"%d\",\"percent\":\"%f\"}", out.pixels, out.percent);
+            }
         }
         return 0;
     }
@@ -73,9 +87,16 @@ int main(int argc, char *argv[])
     auto filename1Normal = std::filesystem::canonical(filename1);
     auto filename2Normal = std::filesystem::canonical(filename2);
 
-    auto out = compareImages(filename1Normal.string(), filename2Normal.string(), true);
-    printf("Result:\n");
-    printf("Different pixels: %d \n", out.pixels);
-    printf("That's %f%% different image.\n", out.percent);
+    auto out = compareImages(filename1Normal.string(), filename2Normal.string(), !jsonMode);
+    if (!jsonMode)
+    {
+        printf("Result:\n");
+        printf("Different pixels: %d \n", out.pixels);
+        printf("That's %f%% different image.\n", out.percent);
+    }
+    else
+    {
+        printf("{\"pixels\":\"%d\",\"percent\":\"%f\"}", out.pixels, out.percent);
+    }
     return 0;
 }
