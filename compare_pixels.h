@@ -12,8 +12,19 @@ double reversePercentage(double percentage)
 struct CompareResult
 {
     float percent;
-    float pixels;
+    int pixels;
 };
+
+bool ColorsAreClose(int r1, int g1, int b1, int r2, int g2, int b2, int threshold = 50)
+{
+    int rDist = std::abs(r1 - r2),
+        gDist = std::abs(g1 - g2),
+        bDist = std::abs(b1 - b2);
+    // return (r * r + g * g + b * b) <= threshold * threshold;
+    if (rDist + gDist + bDist > threshold)
+        return false;
+    return true;
+}
 
 /// @brief Compares image pixel by pixel. Outputs results.
 /// @param filename1 Source filename
@@ -83,14 +94,30 @@ CompareResult compareImages(std::string filename1, std::string filename2, bool e
                 unsigned char blue2 = imagesData[i][index + 2];
                 // unsigned char alpha2 = imagesData[i][index + 3];
 
+                // Color colors1 = Color();
+                // colors1.R = red1;
+                // colors1.G = green1;
+                // colors1.B = blue1;
+                // Color colors2 = Color();
+                // colors2.R = red2;
+                // colors2.G = green2;
+                // colors2.B = blue2;
+
+                bool matchesAnyColor = (red1 != red2 || green1 != green2 || blue1 != blue2);
+                bool matchesClose = ColorsAreClose((int)red1, (int)green1, (int)blue1, (int)red2, (int)green2, (int)blue2, 50);
                 // if (red1 != red2 || green1 != green2 || blue1 != blue2 || alpha1 != alpha2)
-                if (red1 != red2 || green1 != green2 || blue1 != blue2)
+                // if (red1 != red2 || green1 != green2 || blue1 != blue2)
+                // printf("Pixel (%d, %d) has RGBA values: %d, %d, %d\n", x, y, (int)red1, (int)green1, (int)blue1);
+                // printf("Pixel (%d, %d) has RGBA values: %d, %d, %d\n", x, y, (int)red2, (int)green2, (int)blue2);
+                if (matchesAnyColor || !matchesClose)
                 {
                     // std::cout << "Pixel (" << x << ", " << y << ") is different in image: " << imagesPaths[i] << std::endl;
                     // std::cout << "Pixel (" << x << ", " << y << ") has RGBA values: " << (int)red1 << ", " << (int)green1 << ", " << (int)blue1 << ", " << (int)alpha1 << std::endl;
                     // std::cout << "Pixel (" << x << ", " << y << ") has RGBA values: " << (int)red2 << ", " << (int)green2 << ", " << (int)blue2 << ", " << (int)alpha2 << std::endl;
                     diffPixels += 1;
                 }
+                else 
+                ;
             }
         }
     }
